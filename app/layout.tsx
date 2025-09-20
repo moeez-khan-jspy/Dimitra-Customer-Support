@@ -64,10 +64,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         {styles && <style>{styles}</style>}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <link rel="icon" href="/dimitralogo2023.svg" sizes="any" type="image/svg+xml" />
         <ApplyThemeScript />
       </head>
       <body
         className={`${publicSans.variable} ${commitMono.variable} overflow-x-hidden antialiased`}
+        style={{
+          backgroundImage: "url('/background.jpeg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
       >
         {children}
         <div className="group fixed bottom-0 left-1/2 z-50 mb-2 -translate-x-1/2">
