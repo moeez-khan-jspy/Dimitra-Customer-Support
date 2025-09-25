@@ -19,7 +19,7 @@ type ImageData = {
 };
 
 // Image metadata
-export const alt = 'About Acme';
+export const alt = 'About EarlyAge Development';
 export const size = {
   width: 1200,
   height: 628,
@@ -107,8 +107,8 @@ export default async function Image() {
 
   const pageTitle = cleanPageTitle(appConfig.pageTitle);
   const logoUri = appConfig.logoDark || appConfig.logo;
-  const isLogoUriLocal = logoUri.includes('lk-logo');
-  const wordmarkUri = logoUri === APP_CONFIG_DEFAULTS.logoDark ? 'public/lk-wordmark.svg' : logoUri;
+  const isLogoUriLocal = !isRemoteFile(logoUri);
+  const wordmarkUri = logoUri;
 
   // Load fonts - use file system in dev, fetch in production
   let commitMonoData: ArrayBuffer | undefined;
@@ -126,15 +126,14 @@ export default async function Image() {
   const { base64: bgSrcBase64 } = await getImageData('public/opengraph-image-bg.png');
 
   // wordmark
-  const { base64: wordmarkSrcBase64, dimensions: wordmarkDimensions } = isLogoUriLocal
-    ? await getImageData(wordmarkUri)
-    : await getImageData(logoUri);
+  const { base64: wordmarkSrcBase64, dimensions: wordmarkDimensions } =
+    await getImageData(wordmarkUri);
   const wordmarkSize = scaleImageSize(wordmarkDimensions, isLogoUriLocal ? 32 : 64);
 
   // logo
   const { base64: logoSrcBase64, dimensions: logoDimensions } = await getImageData(
     logoUri,
-    'public/lk-logo-dark.svg'
+    'public/earlyagelogo.png'
   );
   const logoSize = scaleImageSize(logoDimensions, 24);
 
@@ -165,7 +164,7 @@ export default async function Image() {
             gap: 10,
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img src={wordmarkSrcBase64} width={wordmarkSize.width} height={wordmarkSize.height} />
         </div>
         {/* logo */}
@@ -179,7 +178,7 @@ export default async function Image() {
             gap: 10,
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img src={logoSrcBase64} width={logoSize.width} height={logoSize.height} />
         </div>
         {/* title */}

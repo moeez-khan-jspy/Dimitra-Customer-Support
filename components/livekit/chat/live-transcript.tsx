@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { type TextStreamData, useTranscriptions, useRoomContext } from '@livekit/components-react';
+import { type TextStreamData, useTranscriptions } from '@livekit/components-react';
 import { cn } from '@/lib/utils';
 
 interface LiveTranscriptProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,8 +11,6 @@ interface LiveTranscriptProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function LiveTranscript({ className, hideDelayMs = 1200, ...props }: LiveTranscriptProps) {
   const transcriptions: TextStreamData[] = useTranscriptions();
-  const room = useRoomContext();
-
   const [visible, setVisible] = React.useState(false);
   const [text, setText] = React.useState('');
   const [activeStreamId, setActiveStreamId] = React.useState<string | null>(null);
@@ -30,12 +28,6 @@ export function LiveTranscript({ className, hideDelayMs = 1200, ...props }: Live
     const timeout = setTimeout(() => setVisible(false), hideDelayMs);
     return () => clearTimeout(timeout);
   }, [transcriptions, hideDelayMs]);
-
-  const isLocal = React.useMemo(() => {
-    if (!activeStreamId) return false;
-    const last = transcriptions.find((t) => t.streamInfo.id === activeStreamId);
-    return last ? last.participantInfo.identity === room.localParticipant.identity : false;
-  }, [activeStreamId, transcriptions, room.localParticipant.identity]);
 
   return (
     <div className={cn('pointer-events-none flex w-full justify-center', className)} {...props}>
@@ -58,4 +50,4 @@ export function LiveTranscript({ className, hideDelayMs = 1200, ...props }: Live
       </AnimatePresence>
     </div>
   );
-} 
+}

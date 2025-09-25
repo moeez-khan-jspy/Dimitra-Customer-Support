@@ -64,13 +64,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         {styles && <style>{styles}</style>}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="icon" href="/dimitralogo2023.svg" sizes="any" type="image/svg+xml" />
+        <link rel="icon" href="/earlyagelogo.png" sizes="any" type="image/png" />
         <ApplyThemeScript />
       </head>
       <body
         className={`${publicSans.variable} ${commitMono.variable} overflow-x-hidden antialiased`}
         style={{
-          backgroundImage: "url('/background.jpeg')",
+          backgroundImage: "url('/background.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',

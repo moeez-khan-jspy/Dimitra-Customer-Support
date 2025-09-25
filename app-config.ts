@@ -1,7 +1,7 @@
 import type { AppConfig } from './lib/types';
 
 export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'LiveKit',
+  companyName: 'EarlyAge Development',
   pageTitle: 'Customer Support Agent',
   pageDescription: 'A voice agent built with LiveKit',
 
@@ -10,9 +10,9 @@ export const APP_CONFIG_DEFAULTS: AppConfig = {
   supportsScreenShare: true,
   isPreConnectBufferEnabled: true,
 
-  logo: '/dimitralogo2023.svg',
+  logo: '/earlyagelogo.png',
   accent: '#002cf2',
-  logoDark: '/dimitralogo2023.svg',
+  logoDark: '/earlyagelogo.png',
   accentDark: '#1fd5f9',
   startButtonText: 'START CALL',
 

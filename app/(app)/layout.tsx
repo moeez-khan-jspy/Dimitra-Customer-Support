@@ -11,7 +11,7 @@ export default async function AppLayout({ children }: AppLayoutProps) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-50 w-full flex flex-row items-center justify-between p-6">
+      <header className="fixed top-0 left-0 z-50 flex w-full flex-row items-center justify-between p-6">
         <div className="flex items-center gap-3">
           <a
             target="_blank"
@@ -20,7 +20,11 @@ export default async function AppLayout({ children }: AppLayoutProps) {
             className="scale-100 transition-transform duration-300 hover:scale-110"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={logo} alt={`${companyName} Logo`} className="block h-8 w-auto md:h-10 dark:hidden" />
+            <img
+              src={logo}
+              alt={`${companyName} Logo`}
+              className="block h-8 w-auto md:h-10 dark:hidden"
+            />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logoDark ?? logo}
